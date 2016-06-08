@@ -1,0 +1,10 @@
+{
+  "name": "sketch",
+  "version": "0.0.1",
+  "dependencies": {
+    "d3-queue": "^2.0.3",
+    "express": "^4.13.4",
+    "socket.io": "^1.4.5",
+    "underscore-node": "^0.1.2"
+  }
+}

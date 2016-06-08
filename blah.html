@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<head>
+<script src="/test/socket.io/socket.io.js"></script>
+<script src="/test/ready.js"></script>
+<script src="/test/canvas.js"></script>
+<script>
+
+function joinCanvasToSocketRoom(roomId){
+  var socket = io('/' + roomId);
+  canvasHelper().setUpCanvas(socket);
+}
+
+function canvasHelper(){
+  if(!this._canvasHelper){this._canvasHelper = new CanvasHelper();}
+  return this._canvasHelper;
+}
+
+function joinCanvasToNewRoom(){
+  var roomId = document.getElementById('room-id-input').value;
+  if(roomId){
+    joinCanvasToSocketRoom(roomId);
+    displayRoomId(roomId);
+  }
+}
+
+function displayRoomId(roomId){
+  document.getElementById('current-room-id').value = 'current room: ' + roomId;
+}
+
+ready(function(){
+    var roomId = document.getElementById('room-id').getAttribute('data-room-id');
+    joinCanvasToSocketRoom(roomId);
+    displayRoomId(roomId);
+    });
+</script>
+</head>
+<body>
+<canvas id='my-canvas' width=450, height=450></canvas>
+<div id=room-id data-room-id="<%=roomId%>"/>
+  <span>
+    <input type="text" id="room-id-input"/>
+    <button onclick="joinCanvasToNewRoom();" type="button">Join Room</button>
+    <input type="text" id="current-room-id" disabled="yep"/>
+  </span>
+</body>
