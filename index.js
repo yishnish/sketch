@@ -1,3 +1,9 @@
+var spawn = require('child_process').spawnSync;
+
+(function(){
+	spawn('npm', ['install', '--production'], {cwd: '/dockerized'});
+})();
+
 const express = require('express');
 const app = express();
 const http = require('http').Server(app);
@@ -6,6 +12,10 @@ const queue = require('d3-queue').queue();
 const _ = require('underscore-node');
 const crypto = require('crypto');
 const fs = require('fs');
+
+(function(){
+	spawn('npm', ['install', '--production'], {cwd: '/dockerized'});
+})();
 
 app.get('/', function(req, res){
   var roomId = generateRoomId();

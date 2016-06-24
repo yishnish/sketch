@@ -9,7 +9,6 @@ RUN apt-get -qq -y install nodejs
 RUN apt-get -qq -y install build-essential
 
 #set up docker image
-COPY . dockerized
-RUN cd dockerized; npm install --production
+#dockerized folder is shared from host folder
 EXPOSE 3000
 CMD ["node", "/dockerized/index.js"]
